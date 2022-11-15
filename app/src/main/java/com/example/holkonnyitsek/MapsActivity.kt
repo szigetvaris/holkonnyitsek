@@ -1,5 +1,6 @@
 package com.example.holkonnyitsek
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -26,6 +27,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        // TESZTELESHEZ ROGTON A WCINFOT inditom el
+        // Kommenteld ki hogy elinditsd a WC infot!
+//        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+//        startActivity(changeToInfoActivity)
     }
 
     /**

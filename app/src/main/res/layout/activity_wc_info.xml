@@ -6,4 +6,131 @@
     android:layout_height="match_parent"
     tools:context=".WcInfoActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/infoBar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <ImageButton
+                android:id="@+id/bRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="TODO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tNameValue"
+                app:srcCompat="@android:drawable/btn_star_big_on"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tRatingsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="N/A"
+                app:layout_constraintBottom_toBottomOf="@+id/bRate"
+                app:layout_constraintStart_toEndOf="@+id/tRatingsText"
+                app:layout_constraintTop_toTopOf="@+id/bRate" />
+
+            <ImageButton
+                android:id="@+id/bEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/bDelete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bRate"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tOpeningHoursValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="N/A"
+                app:layout_constraintBottom_toBottomOf="@+id/bEdit"
+                app:layout_constraintStart_toEndOf="@+id/tOpeningHoursText"
+                app:layout_constraintTop_toTopOf="@+id/bEdit" />
+
+            <ImageButton
+                android:id="@+id/bDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_delete"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tPriceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="N/A"
+                app:layout_constraintBottom_toBottomOf="@+id/bDelete"
+                app:layout_constraintStart_toEndOf="@+id/tPriceText"
+                app:layout_constraintTop_toTopOf="@+id/bDelete" />
+
+            <TextView
+                android:id="@+id/tRatingsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="Értékelések:"
+                app:layout_constraintBottom_toBottomOf="@+id/tRatingsValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tRatingsValue" />
+
+            <TextView
+                android:id="@+id/tOpeningHoursText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="Nyitvatartás:"
+                app:layout_constraintBottom_toBottomOf="@+id/tOpeningHoursValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tOpeningHoursValue" />
+
+            <TextView
+                android:id="@+id/tPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="Ingyenes/fizetős:"
+                app:layout_constraintBottom_toBottomOf="@+id/tPriceValue"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tPriceValue" />
+
+            <TextView
+                android:id="@+id/tNameValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="WC helye"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/commentBar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

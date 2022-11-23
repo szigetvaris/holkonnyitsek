@@ -1,5 +1,8 @@
 package com.example.holkonnyitsek.data
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 class DataManagerInterface {
 
     lateinit var WCList: MutableList<WCObject>
@@ -46,9 +49,14 @@ class DataManagerInterface {
 
     fun wrapWCObject() {
         // WCObject to JSON
+        Gson().toJson(WCList)
+
     }
 
-    fun unwrapWCObject() {
+    fun unwrapWCObject(dataFromServer: String) {
         // JSON to WCObject
+        val gson = Gson()
+        val itemType = object : TypeToken<MutableList<WCObject>>() {}.type
+        var tempWCList: MutableList<WCObject> = gson.fromJson<MutableList<WCObject>>(dataFromServer, itemType)
     }
 }

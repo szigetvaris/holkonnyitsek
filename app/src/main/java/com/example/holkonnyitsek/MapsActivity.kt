@@ -3,6 +3,7 @@ package com.example.holkonnyitsek
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.holkonnyitsek.data.DataManagerInterface
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -12,10 +13,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.holkonnyitsek.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.model.Marker
+import com.google.android.libraries.places.api.Places
 
 var DMI = DataManagerInterface()
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -51,10 +54,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
+        mMap.setOnMarkerClickListener(this);
         // Add a marker in Sydney and move the camera
         val bmeI = LatLng(47.4726408, 19.0583993)
         mMap.addMarker(MarkerOptions().position(bmeI).title("Marker in BME I building"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bmeI,17f))
     }
+    /** Called when the user clicks a marker.  */
+    override fun onMarkerClick(marker: Marker): Boolean {
+
+        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+        startActivity(changeToInfoActivity)
+
+        // Return false to indicate that we have not consumed the event and that we wish
+        // for the default behavior to occur (which is for the camera to move such that the
+        // marker is centered and for the marker's info window to open, if it has one).
+        return true
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.holkonnyitsek
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.holkonnyitsek.data.DataManagerInterface
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -11,6 +12,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.holkonnyitsek.databinding.ActivityMapsBinding
+
+var DMI = DataManagerInterface()
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -23,6 +26,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // FONTOS !!
+        DMI.init()
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -30,9 +36,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // TESZTELESHEZ ROGTON A WCINFOT inditom el
         // Kommenteld ki hogy elinditsd a WC infot!
-        //val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
-        //startActivity(changeToInfoActivity)
-        //setContentView(R.layout.activity_maps)
+//        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+//        startActivity(changeToInfoActivity)
     }
 
     /**
@@ -48,8 +53,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val bmeI = LatLng(47.4726408, 19.0583993)
-        mMap.addMarker(MarkerOptions().position(bmeI).title("Marker in BME I building"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bmeI,17f))
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 }

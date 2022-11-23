@@ -26,7 +26,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // FONTOS !!
+        // FONTOS !!!
         DMI.init()
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

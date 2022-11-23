@@ -14,8 +14,8 @@ class DataManagerInterface {
             mutableListOf<WCRating>(WCRating("Bela", "2022.08.33",5, "Szuper jo volt!!" ),
                 WCRating("Juci", "2022.08.33", 3, "Voltam mar jobban is.."),
                 WCRating("Juci", "2022.08.34", 5, "Masodjara sokkal jobban tetszett :)"),
-                WCRating("Bela", "2022.08.35",5, "Mindig szeretek ide szarni!" ),
-                WCRating("Bandi", "2022.08.33", 2, "Lorem ipsum subi dubi legyen ez a komment tuti$$ szerintem lehetne jobb is rosszabb is most 2 csillagot adtam ra es csak jartatom a szam")
+                WCRating("Bela", "2022.08.35",2, "Mindig szeretek ide szarni!" ),
+                WCRating("Sanya", "2022.08.33", 2, "Lorem ipsum subi dubi legyen ez a komment tuti$$ szerintem lehetne jobb is rosszabb is most 2 csillagot adtam ra es csak jartatom a szam")
             ),
             true,
             "Ingyenes",

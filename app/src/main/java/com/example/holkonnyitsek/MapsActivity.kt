@@ -27,7 +27,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         // FONTOS !!!
-        //DMI.init()
+        DMI.init()
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -36,8 +36,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // TESZTELESHEZ ROGTON A WCINFOT inditom el
         // Kommenteld ki hogy elinditsd a WC infot!
-//        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
-//        startActivity(changeToInfoActivity)
+        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+        startActivity(changeToInfoActivity)
     }
 
     /**

@@ -18,14 +18,14 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
     constructor(context: Context) : super() {
         this.context = context
     }
-//    private val comments: MutableList<WCRating> = DMI.SelectedWC.ratings
-    private val comments: MutableList<WCRating> = mutableListOf<WCRating>(
-        WCRating("Bela", "2022.08.33",5, "Szuper jo volt!!" ),
-        WCRating("Juci", "2022.08.33", 3, "Voltam mar jobban is.."),
-        WCRating("Juci", "2022.08.34", 5, "Masodjara sokkal jobban tetszett :)"),
-        WCRating("Bela", "2022.08.35",5, "Mindig szeretek ide szarni!" ),
-        WCRating("Bandi", "2022.08.33", 2, "Lorem ipsum subi dubi legyen ez a komment tuti$$ szerintem lehetne jobb is rosszabb is most 2 csillagot adtam ra es csak jartatom a szam")
-    )
+    private val comments: MutableList<WCRating> = DMI.SelectedWC.ratings
+//    private val comments: MutableList<WCRating> = mutableListOf<WCRating>(
+//        WCRating("Bela", "2022.08.33",5, "Szuper jo volt!!" ),
+//        WCRating("Juci", "2022.08.33", 3, "Voltam mar jobban is.."),
+//        WCRating("Juci", "2022.08.34", 5, "Masodjara sokkal jobban tetszett :)"),
+//        WCRating("Bela", "2022.08.35",5, "Mindig szeretek ide szarni!" ),
+//        WCRating("Bandi", "2022.08.33", 2, "Lorem ipsum subi dubi legyen ez a komment tuti$$ szerintem lehetne jobb is rosszabb is most 2 csillagot adtam ra es csak jartatom a szam")
+//    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view = LayoutInflater

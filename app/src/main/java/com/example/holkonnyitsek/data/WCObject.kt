@@ -5,7 +5,7 @@ data class WCObject(
     val latitude: Float,
     val name: String,
     val opening_hours: String,
-    val ratings: mutableListOf<WCRating>,
+    val ratings: MutableList<WCRating>,
     val isfree: Boolean,
     val Price: String
 )

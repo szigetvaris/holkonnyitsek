@@ -7,7 +7,7 @@ class DataManagerInterface {
     lateinit var SelectedWC: WCObject
 
     fun init() {
-        WCList.add(WCObject(192.23f,
+        WCList = mutableListOf<WCObject>(WCObject(192.23f,
             231.23f,
             "BME Q epulet",
             "07:00-20:00",

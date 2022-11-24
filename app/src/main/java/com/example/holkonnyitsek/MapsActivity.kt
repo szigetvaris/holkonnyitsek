@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.holkonnyitsek.data.DataManagerInterface
+import com.example.holkonnyitsek.data.WCObject
+import com.example.holkonnyitsek.data.WCRating
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -64,8 +66,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     /** Called when the user clicks a marker.  */
     override fun onMarkerClick(marker: Marker): Boolean {
 
-        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
-        startActivity(changeToInfoActivity)
+        //val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+        //startActivity(changeToInfoActivity)
 
         // Return false to indicate that we have not consumed the event and that we wish
         // for the default behavior to occur (which is for the camera to move such that the
@@ -73,7 +75,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         return true
     }
     override fun  onMapLongClick(latLng : LatLng) {
-
+            // popup majd ide jon
+            var tmpWC = WCObject(
+                latLng.longitude.toFloat(),
+                latLng.latitude.toFloat(),
+                "BME W epulet",
+                "12:00-12:30",
+                mutableListOf<WCRating>(
+                    WCRating("Bela", "2022.08.33",3, "Szuper jo volt!!" ),
+                    WCRating("Sanya", "2022.08.33", 2, "nem volt koser")
+                ),
+                true,
+                "ingyenes"
+            )
+            DMI.addWC(tmpWC)
     }
 
 

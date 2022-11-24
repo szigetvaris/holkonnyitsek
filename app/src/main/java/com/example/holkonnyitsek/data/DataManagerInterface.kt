@@ -35,7 +35,7 @@ class DataManagerInterface {
         // wc/del/id
     }
 
-    fun addWC() {
+    fun addWC(WC: WCObject) {
         // wc/add
     }
 

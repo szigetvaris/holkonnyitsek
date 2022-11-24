@@ -1,6 +1,6 @@
 package com.example.holkonnyitsek.data
 
-import java.util.Date
+import java.time.LocalDate
 
 data class WCRating(
     val username: String,

@@ -1,7 +1,10 @@
 package com.example.holkonnyitsek.data
 
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class DataManagerInterface {
 
@@ -12,23 +15,33 @@ class DataManagerInterface {
     fun init() {
         WCList = mutableListOf<WCObject>(WCObject(192.23f,
             231.23f,
-            "BME Q epulet",
-            "07:00-20:00",
-            mutableListOf<WCRating>(WCRating("Bela", "2022.08.33",5, "Szuper jo volt!!" ),
-                WCRating("Juci", "2022.08.33", 3, "Voltam mar jobban is.."),
-                WCRating("Juci", "2022.08.34", 5, "Masodjara sokkal jobban tetszett :)"),
-                WCRating("Bela", "2022.08.35",2, "Mindig szeretek ide szarni!" ),
-                WCRating("Sanya", "2022.08.33", 2, "Lorem ipsum subi dubi legyen ez a komment tuti$$ szerintem lehetne jobb is rosszabb is most 2 csillagot adtam ra es csak jartatom a szam")
-            ),
+            "init",
+            "init",
+            mutableListOf<WCRating>(WCRating("init", "2022-10-10",5, "Szuper jo volt!!" ),),
             true,
-            "Ingyenes",
+
+            "ingyenes",
         ))
+        println("before: " + WCList)
+        getAllWC()
+        println("after: " + WCList)
+
         SelectedWC = WCList.get(0)
     }
 
     fun getAllWC() {
         // get wc/get/all
         // for all in response[] unwrapWCObject
+        val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
+        // launching a new coroutine
+        GlobalScope.launch {
+            val result = toiletService.getToilets()
+            if (result != null) {
+                // Checking the results
+                Log.d("ayush: ", result.body().toString())
+            }
+            WCList = result.body()!!
+        }
     }
 
     fun delWC() {
@@ -37,6 +50,18 @@ class DataManagerInterface {
 
     fun addWC(WC: WCObject) {
         // wc/add
+
+
+        val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
+        // launching a new coroutine
+        GlobalScope.launch {
+            val result = toiletService.addToilet(WC)
+            println("resulttt" + WC)
+            if (result != null) {
+                // Checking the results
+                Log.d("ayush: ", result.body().toString())
+            }
+        }
     }
 
     fun editWC() {
@@ -47,9 +72,9 @@ class DataManagerInterface {
         // wc/rate/id
     }
 
-    fun wrapWCObject() {
+    fun wrapWCObject(): String {
         // WCObject to JSON
-        Gson().toJson(WCList)
+        return Gson().toJson(WCList)
 
     }
 

@@ -1,9 +1,7 @@
 package com.example.holkonnyitsek
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.holkonnyitsek.data.DataManagerInterface
 import com.example.holkonnyitsek.data.WCObject
 import com.example.holkonnyitsek.data.WCRating
@@ -16,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.holkonnyitsek.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.model.Marker
-import com.google.android.libraries.places.api.Places
+import java.time.LocalDate
 
 var DMI = DataManagerInterface()
 
@@ -82,13 +80,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 "BME W epulet",
                 "12:00-12:30",
                 mutableListOf<WCRating>(
-                    WCRating("Bela", "2022.08.33",3, "Szuper jo volt!!" ),
-                    WCRating("Sanya", "2022.08.33", 2, "nem volt koser")
+                    WCRating("Bela", "2022-20-20",3, "Szuper jo volt!!" ),
+                    WCRating("Sanya", "localDate", 2, "nem volt koser")
                 ),
                 true,
                 "ingyenes"
             )
             DMI.addWC(tmpWC)
+            println("valami nagyon jól működik")
     }
 
 

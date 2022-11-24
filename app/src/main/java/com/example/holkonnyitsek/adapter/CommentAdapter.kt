@@ -38,7 +38,7 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
         var comment = comments[position]
 
         holder.tvName.text = comment.username
-        holder.tvDate.text = comment.date
+        holder.tvDate.text = comment.date.toString()
         holder.tvStars.text = comment.stars.toString()
         holder.tvContent.text = comment.content
     }

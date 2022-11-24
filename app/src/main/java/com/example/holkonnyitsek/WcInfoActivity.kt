@@ -62,7 +62,7 @@ class WcInfoActivity : AppCompatActivity() {
         }
         iTvRating.text = (Math.round((sum / n *10).toDouble())/10).toString()
         iTvOpeningHours.text = DMI.SelectedWC.opening_hours
-        iTvPrice.text = DMI.SelectedWC.Price
+        iTvPrice.text = DMI.SelectedWC.Price.toString()
 
     }
 }

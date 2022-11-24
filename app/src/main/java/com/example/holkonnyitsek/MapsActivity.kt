@@ -18,7 +18,7 @@ import com.google.android.libraries.places.api.Places
 
 var DMI = DataManagerInterface()
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,GoogleMap.OnMapLongClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -39,8 +39,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         // TESZTELESHEZ ROGTON A WCINFOT inditom el
         // Kommenteld ki hogy elinditsd a WC infot!
-        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
-        startActivity(changeToInfoActivity)
+        // val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+        // startActivity(changeToInfoActivity)
     }
 
     /**
@@ -55,6 +55,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnMapLongClickListener(this);
         // Add a marker in Sydney and move the camera
         val bmeI = LatLng(47.4726408, 19.0583993)
         mMap.addMarker(MarkerOptions().position(bmeI).title("Marker in BME I building"))
@@ -71,5 +72,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         // marker is centered and for the marker's info window to open, if it has one).
         return true
     }
+    override fun  onMapLongClick(latLng : LatLng) {
+
+    }
+
 
 }

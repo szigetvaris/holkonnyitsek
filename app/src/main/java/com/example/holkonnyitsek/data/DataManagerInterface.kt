@@ -4,7 +4,9 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class DataManagerInterface {
 
@@ -20,7 +22,7 @@ class DataManagerInterface {
             mutableListOf<WCRating>(WCRating("init", "2022-10-10",5, "Szuper jo volt!!" ),),
             true,
 
-            "ingyenes",
+            "ingyenes","id"
         ))
         println("before: " + WCList)
         getAllWC()
@@ -29,12 +31,12 @@ class DataManagerInterface {
         SelectedWC = WCList.get(0)
     }
 
-    fun getAllWC() {
+    fun getAllWC() = runBlocking{
         // get wc/get/all
         // for all in response[] unwrapWCObject
         val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
         // launching a new coroutine
-        GlobalScope.launch {
+        val asyncResult = async {
             val result = toiletService.getToilets()
             if (result != null) {
                 // Checking the results
@@ -44,30 +46,42 @@ class DataManagerInterface {
             if(result.body() != null){
                 WCList = result.body()!!
             }
-
-
-            println("result body" + result)
         }
+        val result = asyncResult.await()
     }
 
-    fun delWC() {
+    fun delWC(WC: WCObject) = runBlocking {
         // wc/del/id
+        val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
+        // launching a new coroutine
+        val asyncResult = async {
+            val result = toiletService.deleteToilet(WC.id)
+            if (result != null) {
+                // Checking the results
+                Log.d("ayush: ", result.body().toString())
+            }
+        }
+        val result = asyncResult.await()
+        getAllWC()
+
     }
 
-    fun addWC(WC: WCObject) {
+    fun addWC(WC: WCObject) = runBlocking {
         // wc/add
 
 
         val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
         // launching a new coroutine
-        GlobalScope.launch {
+        val asyncResult = async {
             val result = toiletService.addToilet(WC)
             if (result != null) {
                 // Checking the results
                 Log.d("ayush: ", result.body().toString())
             }
         }
+        val result = asyncResult.await()
         getAllWC()
+
     }
 
     fun editWC() {

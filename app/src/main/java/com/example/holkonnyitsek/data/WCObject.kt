@@ -7,5 +7,6 @@ data class WCObject(
     var opening_hours: String,
     var ratings: MutableList<WCRating>,
     var isfree: Boolean,
-    var Price: String
+    var Price: String,
+    var id: String
 )

@@ -43,7 +43,8 @@ class WcInfoActivity : AppCompatActivity() {
         }
         bDelete = this.findViewById<ImageButton>(R.id.bDelete)
         bDelete.setOnClickListener {
-            Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show()
+            DMI.delWC(DMI.SelectedWC)
         }
 
 

@@ -54,7 +54,8 @@ class AddWCFragment : DialogFragment() {
         opening_hours = openingHoursEditText.text.toString(),
         ratings = mutableListOf<WCRating>(),
         isfree = isFreeCheckBox.isChecked,
-        Price = priceEditText.text.toString()
+        Price = priceEditText.text.toString(),
+        id = ""
     )
 
     private fun getContentView(): View {

@@ -13,15 +13,19 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.holkonnyitsek.databinding.ActivityMapsBinding
+import com.example.holkonnyitsek.fragments.AddWCFragment
 import com.google.android.gms.maps.model.Marker
 import java.time.LocalDate
 
 var DMI = DataManagerInterface()
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,GoogleMap.OnMapLongClickListener {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,GoogleMap.OnMapLongClickListener, AddWCFragment.AddWCDialogListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+
+    private var longitude: Float = 0.0f
+    private var latitude: Float = 0.0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,20 +78,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     }
     override fun  onMapLongClick(latLng : LatLng) {
             // popup majd ide jon
-            var tmpWC = WCObject(
-                latLng.longitude.toFloat(),
-                latLng.latitude.toFloat(),
-                "BME W epulet",
-                "12:00-12:30",
-                mutableListOf<WCRating>(
-                    WCRating("Bela", "2022-20-20",3, "Szuper jo volt!!" ),
-                    WCRating("Sanya", "localDate", 2, "nem volt koser")
-                ),
-                true,
-                "ingyenes"
+            longitude = latLng.longitude.toFloat()
+            latitude = latLng.latitude.toFloat()
+            AddWCFragment().show(
+                supportFragmentManager,
+                AddWCFragment.TAG
             )
-            DMI.addWC(tmpWC)
+
             println("valami nagyon jól működik")
+        return
+    }
+
+    override fun onWCCreated(newWC: WCObject) {
+        println("letrejott a klotyo")
+        newWC.longitude = longitude
+        newWC.latitude = latitude
+        DMI.addWC(newWC)
     }
 
 

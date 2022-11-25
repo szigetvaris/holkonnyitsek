@@ -1,27 +1,26 @@
 package com.example.holkonnyitsek
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.holkonnyitsek.data.DataManagerInterface
 import com.example.holkonnyitsek.data.WCObject
-import com.example.holkonnyitsek.data.WCRating
-
+import com.example.holkonnyitsek.databinding.ActivityMapsBinding
+import com.example.holkonnyitsek.fragments.AddWCFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import com.example.holkonnyitsek.databinding.ActivityMapsBinding
-import com.example.holkonnyitsek.fragments.AddWCFragment
 import com.google.android.gms.maps.model.Marker
-import java.time.LocalDate
+import com.google.android.gms.maps.model.MarkerOptions
 
 var DMI = DataManagerInterface()
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,GoogleMap.OnMapLongClickListener, AddWCFragment.AddWCDialogListener {
 
     private lateinit var mMap: GoogleMap
+
     private lateinit var binding: ActivityMapsBinding
 
     private var longitude: Float = 0.0f
@@ -35,6 +34,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         // FONTOS !!!
         DMI.init()
+        // add markers from server
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -64,12 +64,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val bmeI = LatLng(47.4726408, 19.0583993)
         mMap.addMarker(MarkerOptions().position(bmeI).title("Marker in BME I building"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bmeI,17f))
+
+        updateMarkers()
+
     }
     /** Called when the user clicks a marker.  */
     override fun onMarkerClick(marker: Marker): Boolean {
 
-        //val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
-        //startActivity(changeToInfoActivity)
+        val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
+        startActivity(changeToInfoActivity)
 
         // Return false to indicate that we have not consumed the event and that we wish
         // for the default behavior to occur (which is for the camera to move such that the
@@ -84,7 +87,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 supportFragmentManager,
                 AddWCFragment.TAG
             )
-
             println("valami nagyon jól működik")
         return
     }
@@ -94,7 +96,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         newWC.longitude = longitude
         newWC.latitude = latitude
         DMI.addWC(newWC)
+        updateMarkers()
     }
+
+    fun addMarker(wc: WCObject){
+        val wcPos = LatLng(wc.latitude.toDouble(), wc.longitude.toDouble())
+        println("addMarker: " + wcPos)
+        mMap.addMarker(MarkerOptions().position(wcPos).title(wc.name))
+    }
+    fun updateMarkers() {
+        if (::mMap.isInitialized) { //prevent crashing if the map doesn't exist yet (eg. on starting activity)
+            mMap.clear()
+            // add markers from database to the map
+            println("onResume???")
+        }
+        for (wc in DMI.WCList){
+            addMarker(wc)
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        if (::mMap.isInitialized) { //prevent crashing if the map doesn't exist yet (eg. on starting activity)
+            mMap.clear()
+            // add markers from database to the map
+            updateMarkers()
+            println("onResume???")
+        }
+    }
+
 
 
 }

@@ -40,7 +40,13 @@ class DataManagerInterface {
                 // Checking the results
                 Log.d("ayush: ", result.body().toString())
             }
-            WCList = result.body()!!
+            println("before result body" + result.body())
+            if(result.body() != null){
+                WCList = result.body()!!
+            }
+
+
+            println("result body" + result)
         }
     }
 
@@ -56,12 +62,12 @@ class DataManagerInterface {
         // launching a new coroutine
         GlobalScope.launch {
             val result = toiletService.addToilet(WC)
-            println("resulttt" + WC)
             if (result != null) {
                 // Checking the results
                 Log.d("ayush: ", result.body().toString())
             }
         }
+        getAllWC()
     }
 
     fun editWC() {
@@ -84,4 +90,6 @@ class DataManagerInterface {
         val itemType = object : TypeToken<MutableList<WCObject>>() {}.type
         var tempWCList: MutableList<WCObject> = gson.fromJson<MutableList<WCObject>>(dataFromServer, itemType)
     }
+
+
 }

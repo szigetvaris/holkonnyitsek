@@ -14,7 +14,7 @@ interface ToiletService {
     @POST("/wc/add")
     suspend fun addToilet(@Body wcData: WCObject) : Response<String>
 
-    @GET("/quotes")
+    @GET("/wc/get/all")
     suspend fun getToilets() : Response<MutableList<WCObject>>
 }
 

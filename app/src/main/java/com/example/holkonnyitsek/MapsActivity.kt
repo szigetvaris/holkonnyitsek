@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.holkonnyitsek.data.DataManagerInterface
 import com.example.holkonnyitsek.data.WCObject
+import com.example.holkonnyitsek.data.WCRating
 import com.example.holkonnyitsek.databinding.ActivityMapsBinding
 import com.example.holkonnyitsek.fragments.AddWCFragment
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -71,7 +72,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     }
     /** Called when the user clicks a marker.  */
     override fun onMarkerClick(marker: Marker): Boolean {
-
+        var wc = findWCbyMarker(marker)!!
+        if (wc != null){
+            DMI.SelectedWC = wc
+        }
+        else println("Marker not found")
         val changeToInfoActivity = Intent(this, WcInfoActivity::class.java)
         startActivity(changeToInfoActivity)
 
@@ -123,6 +128,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             updateMarkers()
             println("onResume???")
         }
+    }
+    fun findWCbyMarker(marker: Marker): WCObject? {
+        for (wc in DMI.WCList){
+            println("positions: " + wc.latitude + ", " + marker.position.latitude.toFloat() + "; " + wc.longitude + ", " + marker.position.longitude.toFloat())
+            if(wc.latitude == marker.position.latitude.toFloat() && wc.longitude == marker.position.longitude.toFloat() ){
+                return wc
+            }
+        }
+        return null
+        //return WCObject(0f,0f, "", "", mutableListOf<WCRating>(WCRating("", "",5, "" ),), true, "","")
     }
 
 

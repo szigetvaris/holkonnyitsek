@@ -27,8 +27,18 @@ class DataManagerInterface {
         println("before: " + WCList)
         getAllWC()
         println("after: " + WCList)
+        if(WCList.size == 0){
+            SelectedWC = WCObject(192.23f,
+                231.23f,
+                "init",
+                "init",
+                mutableListOf<WCRating>(WCRating("init", "2022-10-10",5, "Szuper jo volt!!" ),),
+                true,
 
-        SelectedWC = WCList.get(0)
+                "ingyenes","id"
+            )
+        }
+        else SelectedWC = WCList.get(0)
     }
 
     fun getAllWC() = runBlocking{

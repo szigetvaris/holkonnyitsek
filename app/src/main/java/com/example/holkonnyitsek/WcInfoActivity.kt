@@ -61,9 +61,16 @@ class WcInfoActivity : AppCompatActivity() {
             sum += rating.stars
             n += 1
         }
-        iTvRating.text = (Math.round((sum / n *10).toDouble())/10).toString()
-        iTvOpeningHours.text = DMI.SelectedWC.opening_hours
-        iTvPrice.text = DMI.SelectedWC.Price.toString()
+        if(n != 0){
+            iTvRating.text = (Math.round((sum / n *10).toDouble())/10).toString()
+            iTvOpeningHours.text = DMI.SelectedWC.opening_hours
+            iTvPrice.text = DMI.SelectedWC.Price.toString()
+        }
+        else{
+            iTvRating.text = "Nem értékelt"
+            iTvOpeningHours.text = "Ismeretlen"
+            iTvPrice.text = "Ismeretlen"
+        }
 
     }
 }

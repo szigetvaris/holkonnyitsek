@@ -16,9 +16,9 @@ interface ToiletService {
     @GET("/wc/get/all")
     suspend fun getToilets() : Response<MutableList<WCObject>>
 
-    @DELETE("/wc/del/:id")
-    suspend fun deleteToilet(@Path("id") toildetID: String) : Response<String>
-
+    //@DELETE("/wc/del/:id")
+    @GET("/wc/del/{id}")
+    suspend fun deleteToilet(@Path("id") id: String) : Response<String>
 }
 
 object RetrofitHelper {

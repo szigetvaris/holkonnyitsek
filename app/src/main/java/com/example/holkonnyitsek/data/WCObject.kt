@@ -8,5 +8,5 @@ data class WCObject(
     var ratings: MutableList<WCRating>,
     var isfree: Boolean,
     var Price: String,
-    var id: String
+    var _id: String
 )

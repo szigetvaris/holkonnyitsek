@@ -3,9 +3,7 @@ package com.example.holkonnyitsek.data
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class DataManagerInterface {
@@ -62,16 +60,19 @@ class DataManagerInterface {
 
     fun delWC(WC: WCObject) = runBlocking {
         // wc/del/id
+        println("delWC call")
         val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
         // launching a new coroutine
         val asyncResult = async {
-            val result = toiletService.deleteToilet(WC.id)
+            println("WC id: " + WC._id)
+            val result = toiletService.deleteToilet(WC._id)
             if (result != null) {
                 // Checking the results
-                Log.d("ayush: ", result.body().toString())
+                Log.d("ayush: ", result.toString())
             }
         }
         val result = asyncResult.await()
+        println("delete wc " + WC)
         getAllWC()
 
     }

@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -55,7 +54,7 @@ class AddWCFragment : DialogFragment() {
         ratings = mutableListOf<WCRating>(),
         isfree = isFreeCheckBox.isChecked,
         Price = priceEditText.text.toString(),
-        id = ""
+        _id = ""
     )
 
     private fun getContentView(): View {

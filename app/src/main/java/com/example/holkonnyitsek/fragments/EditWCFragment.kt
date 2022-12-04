@@ -60,7 +60,7 @@ class EditWCFragment : DialogFragment() {
 
     private fun getContentView(): View {
         val contentView =
-            LayoutInflater.from(context).inflate(R.layout.dialog_add_wc, null)
+            LayoutInflater.from(context).inflate(R.layout.fragment_edit_w_c, null)
         nameEditText = contentView.findViewById(R.id.editTxName)
         openingHoursEditText = contentView.findViewById(R.id.editTxOpeningHours)
         isFreeCheckBox = contentView.findViewById(R.id.checkBoxIsFree)

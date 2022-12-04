@@ -27,7 +27,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Pl. Utca, házszám" />
+            android:hint="Pl. Utca, házszám" />
 
         <TextView
             android:id="@+id/tvOpeningHours"
@@ -43,7 +43,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Pl. 07:00-21:00" />
+            android:hint="Pl. 07:00-21:00" />
 
         <CheckBox
             android:id="@+id/checkBoxIsFree"
@@ -66,6 +66,6 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Pl. 100Ft" />
+            android:hint="Pl. 100Ft" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

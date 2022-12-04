@@ -95,8 +95,21 @@ class DataManagerInterface {
 
     }
 
-    fun editWC() {
+    fun editWC(WC: WCObject) = runBlocking{
         // wc/edit/id
+        val toiletService = RetrofitHelper.getInstance().create(ToiletService::class.java)
+        // launching a new coroutine
+        val asyncResult = async {
+            println("WC id: " + WC._id)
+            val result = toiletService.editToilet(WC._id,WC)
+            if (result != null) {
+                // Checking the results
+                Log.d("ayush: ", result.toString())
+            }
+        }
+        val result = asyncResult.await()
+        println("delete wc " + WC)
+        getAllWC()
     }
 
     fun rateWC() {

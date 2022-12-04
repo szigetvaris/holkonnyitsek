@@ -8,6 +8,7 @@ import com.example.holkonnyitsek.data.WCObject
 import com.example.holkonnyitsek.data.WCRating
 import com.example.holkonnyitsek.databinding.ActivityMapsBinding
 import com.example.holkonnyitsek.fragments.AddWCFragment
+import com.example.holkonnyitsek.fragments.EditWCFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback

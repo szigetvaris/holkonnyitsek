@@ -19,6 +19,9 @@ interface ToiletService {
     //@DELETE("/wc/del/:id")
     @GET("/wc/del/{id}")
     suspend fun deleteToilet(@Path("id") id: String) : Response<String>
+
+    @POST("/wc/edit/{id}")
+    suspend fun editToilet(@Path("id") id: String, @Body wcData: WCObject) : Response<String>
 }
 
 object RetrofitHelper {

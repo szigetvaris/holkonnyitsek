@@ -8,10 +8,13 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.holkonnyitsek.adapter.CommentAdapter
+import com.example.holkonnyitsek.data.WCObject
 import com.example.holkonnyitsek.data.WCRating
+import com.example.holkonnyitsek.fragments.AddWCFragment
+import com.example.holkonnyitsek.fragments.EditWCFragment
 import kotlinx.android.synthetic.main.activity_wc_info.*
 
-class WcInfoActivity : AppCompatActivity() {
+class WcInfoActivity : AppCompatActivity(), EditWCFragment.EditWCDialogListener{
 
     lateinit var commentAdapter: CommentAdapter
 
@@ -39,7 +42,11 @@ class WcInfoActivity : AppCompatActivity() {
         }
         bEdit = this.findViewById<ImageButton>(R.id.bEdit)
         bEdit.setOnClickListener {
-            Toast.makeText(this, "Szerkesztes", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Szerkesztes", Toast.LENGTH_SHORT).show()
+            EditWCFragment().show(
+                supportFragmentManager,
+                EditWCFragment.TAG
+            )
         }
         bDelete = this.findViewById<ImageButton>(R.id.bDelete)
         bDelete.setOnClickListener {
@@ -73,4 +80,8 @@ class WcInfoActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onWCEdited(newWC: WCObject) {
+        println("modosult a klotyo")
+        DMI.editWC(newWC)    }
 }

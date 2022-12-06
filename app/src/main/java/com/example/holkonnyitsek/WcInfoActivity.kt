@@ -68,16 +68,21 @@ class WcInfoActivity : AppCompatActivity(), EditWCFragment.EditWCDialogListener{
             sum += rating.stars
             n += 1
         }
+
         if(n != 0){
             iTvRating.text = (Math.round((sum / n *10).toDouble())/10).toString()
-            iTvOpeningHours.text = DMI.SelectedWC.opening_hours
-            iTvPrice.text = DMI.SelectedWC.Price.toString()
         }
         else{
             iTvRating.text = "Nem értékelt"
-            iTvOpeningHours.text = "Ismeretlen"
-            iTvPrice.text = "Ismeretlen"
         }
+        if(DMI.SelectedWC.opening_hours != null)
+            iTvOpeningHours.text = DMI.SelectedWC.opening_hours
+        else
+            iTvOpeningHours.text = "Ismeretlen"
+        if(DMI.SelectedWC.Price != null)
+            iTvPrice.text = DMI.SelectedWC.Price.toString()
+        else
+            iTvPrice.text = "Ismeretlen"
 
     }
 

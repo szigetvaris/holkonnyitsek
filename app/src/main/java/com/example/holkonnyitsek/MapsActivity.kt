@@ -68,6 +68,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap.addMarker(MarkerOptions().position(bmeI).title("Marker in BME I building"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bmeI,17f))
 
+//        DMI.addWC(WCObject(
+//            19.058658921028538f,
+//            47.4783681678217f,
+//            "Budapest, Egry József u. 1, 1111",
+//            "07:00-20:00",
+//            mutableListOf<WCRating>(WCRating("Bela", "2022.08.33",5, "Szuper jo volt!!" ),
+//                WCRating("Juci", "2022.08.33", 3, "Voltam mar jobban is.."),
+//                WCRating("Juci", "2022.08.34", 5, "Masodjara sokkal jobban tetszett :)"),
+//                WCRating("Bela", "2022.08.35",5, "Mindig szeretek ide szarni!" ),
+//                WCRating("Bandi", "2022.08.33", 2, "Lorem ipsum subi dubi legyen ez a komment tuti$$ szerintem lehetne jobb is rosszabb is most 2 csillagot adtam ra es csak jartatom a szam")),
+//            true,
+//
+//            "ingyenes","id"
+//        ))
         updateMarkers()
 
     }
